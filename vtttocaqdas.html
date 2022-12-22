@@ -56,12 +56,17 @@ var input = document.getElementById("inputData").value
 
 var output = input.replace(/NOTE Confidence: [0-9].[0-9]*/g,"")
 
-output = output.replace(/[a-z0-9]*-[a-z0-9]*-[a-z0-9]*-[a-z0-9]*-[a-z0-9]*/g,"")
-output = output.replace(/.[0-9]* --> [0-9]*:[0-9]*:[0-9]*.[0-9]*/g,"   ")
-output = output.replace(/(NOTE .*)/g,"")
-output = output.replace(/WEBVTT/,"")
-output = output.replace(/\n\s/g,"")
-output = output.replace(/\n(\D)/g," $1")
+	output = output.replace(/[a-z0-9]*-[a-z0-9]*-[a-z0-9]*-[a-z0-9]*-[a-z0-9]*-?[0-9]?/g,"")
+	output = output.replace(/.[0-9]* --> [0-9]*:[0-9]*:[0-9]*.[0-9]*/g,"   ")
+	output = output.replace(/(NOTE .*)/g,"")
+	output = output.replace(/WEBVTT/, "")
+	output = output.replace(/<v ([a-zA-Z]*, [a-zA-Z]*)>/g, "   $1   ")
+    output = output.replace(/<\/v>\n/g, "   ")
+	output = output.replace(/\n\s/g, "")
+    output = output.replace(/\n(\D)/g, " $1")
+    
+
+
 
 var outputElement = document.getElementById("output")
 var filename = document.getElementById("fileName").value;
